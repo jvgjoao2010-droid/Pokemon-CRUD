@@ -1,0 +1,12 @@
+{"scripts": {
+  "pokemon": "node --watch src/server.js"
+  
+},"type": "module",
+
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "knex": "^3.3.0",
+    "pg": "^8.23.1"
+  }
+}
