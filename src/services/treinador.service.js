@@ -11,18 +11,18 @@ class treinadorService {
         const { nome } = dados;
 
         const res = await pool.query(
-            'INSERT INTO treinadores ( nome ) VALUES ($1) RETURNING *',
+            'INSERT INTO treinador ( nome ) VALUES ($1) RETURNING *',
             [nome]
         );
 
         return res.rows[0];
     }
 
-    async update(dados) {
+    async update(id, dados) {
         const { nome } = dados;
         const res = await pool.query(
-            'UPDATE treinador SET nome = $1 RETURNING *',
-            [nome]
+            'UPDATE treinador SET nome = $1 WHERE id = $2 RETURNING *',
+            [nome, id]
         );
         return res.rows[0];
     }

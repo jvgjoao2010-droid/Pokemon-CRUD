@@ -1,6 +1,6 @@
 import { pool } from "../config/db.js";
 
-class pokemonService {
+class PokemonService {
 
     async getTudo() {
         const res = await pool.query('SELECT * FROM pokemons');
@@ -11,7 +11,7 @@ class pokemonService {
         const { nome, nivel, tipo } = dados;
 
         const res = await pool.query(
-            'INSERT INTO pokemons (nome, nivel, tipo) VALUES ($1, $2, $3,) RETURNING *',
+            'INSERT INTO pokemons (nome, nivel, tipo) VALUES ($1, $2, $3) RETURNING *',
             [nome, nivel, tipo]
         );
 
@@ -35,4 +35,4 @@ class pokemonService {
 
 
 
-export default new pokemonService();
+export const pokemonService = new PokemonService();

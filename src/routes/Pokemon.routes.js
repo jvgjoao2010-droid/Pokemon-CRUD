@@ -1,38 +1,15 @@
-import express from "express";
-import pokemonService from "../service/Pokemon.service.js";
+import { Router } from 'express';
 
-const pokemonRouter = express.Router();
+import { pokemonsController } from '../controllers/Pokemon.controller';
 
-pokemonRouter.get("/", async (res) => {
-    const pokemons = await pokemonService.getTudo();
-    return res.json(pokemons);
-});
+export const pokemonsRouter = Router();
 
-pokemonRouter.post("/", async (req, res) => {
-    const pokemons = await pokemonService.create(req.body);
-    return res.status(201).json(pokemons);
-});
+pokemonsRouter.get('/', pokemonsController.getall);
 
-pokemonRouter.put('/:id', async (req, res) => {
-  try {
-    const pokemons = await pokemonService.update(req.params.id, req.body);
-    if (!pokemons) return res.status(404).json({ erro: 'Pokémon não encontrado.' });
-    return res.json(pokemons);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ erro: 'Erro ao atualizar Pokémon.' });
-  }
-});
+pokemonsRouter.get('/:id',pokemonsController.getById);
 
-pokemonRouter.delete('/:id', async (req, res) => {
-  try {
-    const pokemons = pokemonRouter.delete(req.params.id);
-    if (!pokemons) return res.status(404).json({ erro: 'Pokémon não encontrado.' });
-    return res.json(pokemons);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ erro: 'Erro ao excluir Pokémon.' });
-  }
-});
+pokemonsRouter.post('/',pokemonsController.create);
 
-export default pokemonRouter;
+pokemonsRouter.put('/:id',pokemonsController.update);
+
+pokemonsRouter.delete('/:id', pokemonsController.delete);
