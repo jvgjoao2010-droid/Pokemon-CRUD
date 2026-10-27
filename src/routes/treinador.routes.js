@@ -1,6 +1,7 @@
 import express from "express";
 import treinadorService from "../service/treinador.service.js";
 
+
 const treinadorRouter = express.Router();
 
 treinadorRouter.get("/", async (res) => {
