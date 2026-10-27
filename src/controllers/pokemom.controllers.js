@@ -10,7 +10,8 @@ async getTudo (res)  {
 async  create (req, res)  {
     const pokemons = await pokemonService.create(req.body);
     return res.status(201).json(pokemons);
-}
+} 
+
 
 async update (req, res)  {
   try {
